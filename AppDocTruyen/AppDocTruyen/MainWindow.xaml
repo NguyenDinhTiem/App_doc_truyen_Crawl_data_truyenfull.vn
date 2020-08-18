@@ -1,0 +1,147 @@
+﻿<Window x:Class="AppDocTruyen.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:AppDocTruyen"
+        xmlns:local="clr-namespace:AppDocTruyen"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Arial"
+        FontSize="18"
+        Title="MainWindow" Height="750" Width="1000">
+    <Window.Resources>
+        <ResourceDictionary Source="MainStyle.xaml"></ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid x:Name="gridTop10">
+            <Grid.RowDefinitions>
+                <!--Chia khung thanh 2 phan-->
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="200"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--Main control-->
+            <Grid Grid.Row="0">
+                <materialDesign:ColorZone
+                      Mode="Inverted"
+                      Padding="16">
+                    <DockPanel>
+                        <materialDesign:PopupBox
+                          DockPanel.Dock="Right"
+                          PlacementMode="BottomAndAlignRightEdges">
+                            <ListBox>
+                                <ListBoxItem>
+                                    <Button Click="Button_Click_1">Author</Button>
+                                </ListBoxItem>
+                                <ListBoxItem>
+                                    <Button Click="Button_Click_2">About</Button>
+                                </ListBoxItem>
+                                <ListBoxItem>
+                                    Goodbye.
+                                </ListBoxItem>
+                            </ListBox>
+                        </materialDesign:PopupBox>
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <ToggleButton
+                             Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                            <TextBlock
+                            VerticalAlignment="Center"
+                            Margin="16 0 0 0">
+                             SKY BOOK
+                            </TextBlock>
+                        </StackPanel>
+                    </DockPanel>
+                </materialDesign:ColorZone>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!--Truyen hot-->
+                <Grid Grid.Column="0">
+                    <TextBlock Margin="122,162,118,17">Truyện Hot</TextBlock>
+                    <ToggleButton  
+                      Width="100"
+                      Height="100"
+                      Content="Hot"
+                      Style="{StaticResource MaterialDesignActionAccentToggleButton}"
+                      IsChecked="{Binding IsCheckTruyenHot}"
+                      ToolTip="MaterialDesignActionAccentToggleButton"/>   
+                </Grid>
+                <!--Truyen moi cap nhat-->
+                <Grid Grid.Column="1">
+                    <TextBlock Margin="122,162,118,17">Truyện Mới</TextBlock>
+                    <ToggleButton  
+                      Width="100"
+                      Height="100"
+                      Content="New"
+                      Style="{StaticResource MaterialDesignActionAccentToggleButton}"
+                      IsChecked="{Binding IsCheckTruyenMoi}"
+                      ToolTip="MaterialDesignActionAccentToggleButton"/>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <TextBlock Margin="122,162,118,17">Truyện Full</TextBlock>
+                    <ToggleButton  
+                      Width="100"
+                      Height="100"
+                      Content="Full"
+                      Style="{StaticResource MaterialDesignActionAccentToggleButton}"
+                      IsChecked="{Binding IsCheckTruyenFull}"
+                      ToolTip="MaterialDesignActionAccentToggleButton"/>
+                </Grid>
+            </Grid>
+            <!--Danh sach danh muc truyen Truyen hot, truyen moi cap nhat, truyen full-->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="lsbTopBooks" HorizontalContentAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border VerticalAlignment="Stretch" Height="50" BorderThickness="2" BorderBrush="DarkBlue">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="50"></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid>
+                                        <TextBlock HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center" Text="{Binding STT}"></TextBlock>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition></RowDefinition>
+                                            <RowDefinition></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0">
+                                            <TextBlock HorizontalAlignment="Left"  Text="{Binding BookName}"></TextBlock>
+                                        </Grid>
+
+                                        <Grid Grid.Row="1">
+                                            <TextBlock HorizontalAlignment="Left" Text="{Binding BookURL}"></TextBlock>
+                                        </Grid>
+                                    </Grid>
+
+                                    <Grid Grid.Column="2" Width="124">
+                                        <Button Click="Button_Click">Đọc truyện này</Button>
+
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+        <uc:BookInfoUC x:Name="ucBookInfo" Visibility="Hidden"></uc:BookInfoUC>
+    </Grid>
+</Window>

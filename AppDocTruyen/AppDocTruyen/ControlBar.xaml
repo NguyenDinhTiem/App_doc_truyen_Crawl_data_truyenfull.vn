@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="AppDocTruyen.ControlBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AppDocTruyen"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+             
+    <Grid>
+        <materialDesign:ColorZone
+          Mode="Inverted"
+          Padding="16">
+            <DockPanel>
+                <materialDesign:PopupBox
+          DockPanel.Dock="Right"
+          PlacementMode="BottomAndAlignRightEdges">
+                    <ListBox>
+                        <ListBoxItem MouseDoubleClick="ListBoxItem_MouseDoubleClick">
+                            Hello World
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            Nice Popup
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            Goodbye.
+                        </ListBoxItem>
+                    </ListBox>
+                </materialDesign:PopupBox>
+                <StackPanel
+          Orientation="Horizontal">
+                    <ToggleButton
+            Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                    <TextBlock
+            VerticalAlignment="Center"
+            Margin="16 0 0 0">
+          Material Design In XAML Toolkit
+                    </TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+    </Grid>
+</UserControl>
